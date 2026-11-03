@@ -1,0 +1,353 @@
+{
+  "_comment": "Animation definitions for all wrestler states. Each animation specifies frame indices into the wrestler's sprite atlas, duration per frame (in game frames at 60 FPS), and looping behavior. Frame indices reference rows in each wrestler's sprite strip. These are based on the NES original's animation patterns.",
+
+  "shared": {
+    "_comment": "Animations common to all wrestlers (same frame structure, different sprite art).",
+
+    "idle": {
+      "frames": [0],
+      "frameDuration": 1,
+      "loop": true,
+      "interruptible": true
+    },
+    "idle_breathe": {
+      "frames": [0, 1],
+      "frameDuration": 30,
+      "loop": true,
+      "interruptible": true,
+      "_note": "Subtle breathing animation when standing still for a while."
+    },
+
+    "walk_up": {
+      "frames": [2, 3],
+      "frameDuration": 8,
+      "loop": true,
+      "interruptible": true
+    },
+    "walk_down": {
+      "frames": [4, 5],
+      "frameDuration": 8,
+      "loop": true,
+      "interruptible": true
+    },
+    "walk_left": {
+      "frames": [6, 7],
+      "frameDuration": 8,
+      "loop": true,
+      "interruptible": true
+    },
+    "walk_right": {
+      "frames": [6, 7],
+      "frameDuration": 8,
+      "loop": true,
+      "interruptible": true,
+      "flipX": true
+    },
+
+    "run_left": {
+      "frames": [8, 9],
+      "frameDuration": 4,
+      "loop": true,
+      "interruptible": false
+    },
+    "run_right": {
+      "frames": [8, 9],
+      "frameDuration": 4,
+      "loop": true,
+      "interruptible": false,
+      "flipX": true
+    },
+
+    "punch": {
+      "frames": [10, 11],
+      "frameDuration": 4,
+      "loop": false,
+      "interruptible": false,
+      "hitFrame": 1
+    },
+    "kick": {
+      "frames": [12, 13],
+      "frameDuration": 5,
+      "loop": false,
+      "interruptible": false,
+      "hitFrame": 1
+    },
+
+    "grapple_lockup": {
+      "frames": [14, 15],
+      "frameDuration": 6,
+      "loop": true,
+      "interruptible": false,
+      "_note": "Both wrestlers show this during the grapple timing window."
+    },
+    "grapple_win": {
+      "frames": [16],
+      "frameDuration": 8,
+      "loop": false,
+      "interruptible": false
+    },
+    "grapple_lose": {
+      "frames": [17],
+      "frameDuration": 8,
+      "loop": false,
+      "interruptible": false
+    },
+
+    "body_slam_execute": {
+      "frames": [18, 19, 20, 21],
+      "frameDuration": 6,
+      "loop": false,
+      "interruptible": false
+    },
+    "body_slam_receive": {
+      "frames": [22, 23, 24],
+      "frameDuration": 8,
+      "loop": false,
+      "interruptible": false
+    },
+
+    "brainbuster_execute": {
+      "frames": [25, 26, 27, 28],
+      "frameDuration": 7,
+      "loop": false,
+      "interruptible": false
+    },
+    "brainbuster_receive": {
+      "frames": [29, 30, 31],
+      "frameDuration": 8,
+      "loop": false,
+      "interruptible": false
+    },
+
+    "back_suplex_execute": {
+      "frames": [32, 33, 34, 35],
+      "frameDuration": 7,
+      "loop": false,
+      "interruptible": false
+    },
+
+    "irish_whip_throw": {
+      "frames": [36, 37],
+      "frameDuration": 6,
+      "loop": false,
+      "interruptible": false
+    },
+    "irish_whip_receive": {
+      "frames": [38, 39],
+      "frameDuration": 4,
+      "loop": true,
+      "interruptible": false
+    },
+
+    "rope_rebound": {
+      "frames": [40, 41],
+      "frameDuration": 3,
+      "loop": true,
+      "interruptible": false
+    },
+
+    "running_clothesline": {
+      "frames": [42, 43],
+      "frameDuration": 3,
+      "loop": false,
+      "interruptible": false,
+      "hitFrame": 1
+    },
+    "running_dropkick": {
+      "frames": [44, 45],
+      "frameDuration": 4,
+      "loop": false,
+      "interruptible": false,
+      "hitFrame": 1
+    },
+
+    "stunned": {
+      "frames": [46],
+      "frameDuration": 4,
+      "loop": true,
+      "interruptible": false,
+      "flash": true
+    },
+
+    "knocked_down": {
+      "frames": [47, 48],
+      "frameDuration": 4,
+      "loop": false,
+      "interruptible": false
+    },
+    "downed": {
+      "frames": [49],
+      "frameDuration": 1,
+      "loop": true,
+      "interruptible": false
+    },
+    "getting_up": {
+      "frames": [50, 51, 0],
+      "frameDuration": 8,
+      "loop": false,
+      "interruptible": false
+    },
+
+    "ground_stomp": {
+      "frames": [52, 53],
+      "frameDuration": 5,
+      "loop": false,
+      "interruptible": false,
+      "hitFrame": 1
+    },
+
+    "pin_cover": {
+      "frames": [54],
+      "frameDuration": 1,
+      "loop": true,
+      "interruptible": false
+    },
+    "being_pinned": {
+      "frames": [55],
+      "frameDuration": 1,
+      "loop": true,
+      "interruptible": false
+    },
+    "kick_out": {
+      "frames": [56, 57],
+      "frameDuration": 6,
+      "loop": false,
+      "interruptible": false
+    },
+
+    "climb_turnbuckle": {
+      "frames": [58, 59, 60],
+      "frameDuration": 10,
+      "loop": false,
+      "interruptible": false
+    },
+    "on_turnbuckle": {
+      "frames": [61],
+      "frameDuration": 1,
+      "loop": true,
+      "interruptible": true
+    },
+    "diving_splash": {
+      "frames": [62, 63],
+      "frameDuration": 3,
+      "loop": false,
+      "interruptible": false
+    },
+    "dive_crash": {
+      "frames": [64, 65],
+      "frameDuration": 6,
+      "loop": false,
+      "interruptible": false
+    },
+
+    "exit_ring": {
+      "frames": [66, 67],
+      "frameDuration": 8,
+      "loop": false,
+      "interruptible": false
+    },
+    "enter_ring": {
+      "frames": [67, 66, 0],
+      "frameDuration": 8,
+      "loop": false,
+      "interruptible": false
+    },
+
+    "victory_pose": {
+      "frames": [68, 69],
+      "frameDuration": 15,
+      "loop": true,
+      "interruptible": false
+    },
+    "defeat_pose": {
+      "frames": [70],
+      "frameDuration": 1,
+      "loop": true,
+      "interruptible": false
+    },
+
+    "entrance_walk": {
+      "frames": [6, 7],
+      "frameDuration": 8,
+      "loop": true,
+      "interruptible": false
+    }
+  },
+
+  "per_character": {
+    "_comment": "Character-specific signature move animations. Frame indices continue from the shared set.",
+
+    "hayabusa": {
+      "enzuigiri": {
+        "frames": [71, 72, 73],
+        "frameDuration": 6,
+        "loop": false,
+        "interruptible": false,
+        "hitFrame": 2
+      }
+    },
+    "starman": {
+      "somersault_kick": {
+        "frames": [71, 72, 73, 74],
+        "frameDuration": 5,
+        "loop": false,
+        "interruptible": false,
+        "hitFrame": 2
+      }
+    },
+    "kincornkarn": {
+      "mongolian_chop": {
+        "frames": [71, 72, 73],
+        "frameDuration": 5,
+        "loop": false,
+        "interruptible": false,
+        "hitFrame": 2
+      }
+    },
+    "giant_panther": {
+      "iron_claw": {
+        "frames": [71, 72, 73, 74],
+        "frameDuration": 6,
+        "loop": false,
+        "interruptible": false,
+        "hitFrame": 1
+      }
+    },
+    "amazon": {
+      "piranha_bite": {
+        "frames": [71, 72, 73, 74],
+        "frameDuration": 5,
+        "loop": false,
+        "interruptible": false,
+        "hitFrame": 2
+      }
+    },
+    "king_slender": {
+      "backbreaker": {
+        "frames": [71, 72, 73, 74],
+        "frameDuration": 6,
+        "loop": false,
+        "interruptible": false,
+        "hitFrame": 2
+      }
+    },
+    "great_puma": {
+      "_note": "Great Puma reuses signature animations from whichever move he selects."
+    }
+  },
+
+  "referee": {
+    "idle": { "frames": [0], "frameDuration": 1, "loop": true },
+    "running": { "frames": [1, 2], "frameDuration": 4, "loop": true },
+    "drop_to_mat": { "frames": [3, 4], "frameDuration": 6, "loop": false },
+    "counting": { "frames": [5, 6], "frameDuration": 8, "loop": false },
+    "signal_pin": { "frames": [7, 8], "frameDuration": 10, "loop": false },
+    "signal_ring_out": { "frames": [9], "frameDuration": 1, "loop": true },
+    "point_winner": { "frames": [10, 11], "frameDuration": 12, "loop": true }
+  },
+
+  "totalSharedFrames": 71,
+  "totalPerCharacterFrames": 4,
+  "totalRefFrames": 12,
+  "_note": "Each wrestler's sprite atlas should contain at least 75 frames (71 shared + 4 signature). The referee needs 12 frames. Frames are indexed 0-based within each atlas."
+}

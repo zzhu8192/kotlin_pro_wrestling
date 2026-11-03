@@ -1,0 +1,185 @@
+{
+  "_comment": "All timing values from ROM disassembly. Frame values at 60 FPS (NTSC ~60.0988 Hz). 1 frame ≈ 16.64ms.",
+
+  "grapple": {
+    "lockupDetectionRadius": 18,
+    "windowFrames": 31,
+    "stompCueFrame": 14,
+    "stompToleranceFrames": 4,
+    "_note": "Grapple countdown starts at $1F (31). Stomp cue fires at frame 14 ($0E). Input closest to cue wins."
+  },
+
+  "movement": {
+    "walkSpeedX": 1.0625,
+    "walkSpeedY": 0.8125,
+    "walkSpeedDiagX": 0.8125,
+    "walkSpeedDiagY": 0.65625,
+    "runSpeed": 2.5,
+    "doubleTapWindowFrames": 12,
+    "doubleTapWindowMs": 200,
+    "ropeReboundSpeedMultiplier": 1.8,
+    "ropeReboundDurationFrames": 20,
+    "_note": "Speeds from ROM table $9143. All wrestlers share identical movement speeds. Pixels per frame at NES 256px screen width."
+  },
+
+  "pinfall": {
+    "setupFrames": 30,
+    "refereeRunInDelayFrames": 20,
+    "countFramesPerCount": 60,
+    "totalCounts": 3,
+    "refereeMoveToPositionSpeed": 3.0,
+    "refereeDropDownFrames": 15,
+    "hpThresholdForSuccessfulPin": 62,
+    "_note": "Pin setup takes 30 frames ($1E), referee needs 20 frames ($14) to get into position. Each count is 60 frames. Cannot complete 3-count if opponent HP >= 62 ($3E)."
+  },
+
+  "ringOut": {
+    "countFramesPerCount": 60,
+    "maxCount": 20,
+    "countStartDelayFrames": 30,
+    "_note": "20-count with 1 second per count. Count starts after brief delay when wrestler exits ring."
+  },
+
+  "turnbuckle": {
+    "climbFrames": 16,
+    "diveStartupFrames": 5,
+    "diveTravelSpeed": 5.0,
+    "diveHitRadius": 28,
+    "_note": "Climbing is 16 frames ($10, 0.267 sec) per climbing step. Fast climb compared to our original estimate."
+  },
+
+  "stun": {
+    "lightStunFormula": "(255 - currentHp) / 2",
+    "heavyKnockdownFormula": "2 * (255 - currentHp)",
+    "maxAutoGetUpFrames": 191,
+    "flashIntervalFrames": 4,
+    "hitStopFrames": 3,
+    "knockbackDistance": 12,
+    "knockbackDurationFrames": 6,
+    "getUpInvincibilityFrames": 30,
+    "_note": "Stun duration is HP-dependent: lower HP = longer stun. Max auto-getup capped at 191 frames ($BF, 3.18 sec). At 240 HP, light stun = 7 frames; at 60 HP, heavy knockdown = capped 191 frames."
+  },
+
+  "healthRegen": {
+    "healByteIncrementPerFrame": 6,
+    "overflowThreshold": 256,
+    "hpRestoredPerOverflow": 1,
+    "cycleFrames": 43,
+    "cycleSeconds": 0.71,
+    "maxHp": 239,
+    "_note": "Heal accumulator adds 6 per frame. At 256 overflow (~43 frames / 0.71s), restores 1 HP up to 239 cap. Slow passive regen during idle/neutral play."
+  },
+
+  "match": {
+    "startBellDelayFrames": 120,
+    "endBellDelayFrames": 60,
+    "entranceWalkFrames": 90,
+    "roundTimeLimitFrames": 0,
+    "_note": "Bell rings 2 seconds after match screen loads. No time limit (0 = unlimited)."
+  },
+
+  "difficulty": {
+    "_comment": "CPU AI scales across 4 tiers based on FightCount >> 2 (matches 1-4, 5-8, 9-12, 13-16).",
+    "tiers": [
+      {
+        "tier": 0,
+        "matchRange": "1-4",
+        "grappleReactionDelayFrames": { "min": 6, "max": 9 },
+        "reversalRate": 0.125,
+        "blockRate": 0.25,
+        "aggressionMultiplier": 0.6
+      },
+      {
+        "tier": 1,
+        "matchRange": "5-8",
+        "grappleReactionDelayFrames": { "min": 5, "max": 8 },
+        "reversalRate": 0.25,
+        "blockRate": 0.375,
+        "aggressionMultiplier": 0.75
+      },
+      {
+        "tier": 2,
+        "matchRange": "9-12",
+        "grappleReactionDelayFrames": { "min": 4, "max": 7 },
+        "reversalRate": 0.375,
+        "blockRate": 0.50,
+        "aggressionMultiplier": 0.9
+      },
+      {
+        "tier": 3,
+        "matchRange": "13-16",
+        "grappleReactionDelayFrames": { "min": 3, "max": 6 },
+        "reversalRate": 0.50,
+        "blockRate": 0.625,
+        "aggressionMultiplier": 1.0,
+        "_note": "Great Puma tier. Fastest reactions, highest reversal/block rates."
+      }
+    ],
+    "reactionFormula": "6 + (Timer & 3) - (FightCount >> 2)",
+    "reversalFormula": "(Random & 7) + Tier >= 7",
+    "blockFormula": "(Random & 7) + Tier >= 6"
+  },
+
+  "tournament": {
+    "totalMatches": 16,
+    "phases": [
+      {
+        "name": "VWA Championship Quest",
+        "matches": "1-5",
+        "description": "Face the other 5 playable wrestlers. Match 5 is the VWA Championship.",
+        "opponentOrder": [
+          "starman",
+          "kincornkarn",
+          "giant_panther",
+          "amazon",
+          "king_slender"
+        ],
+        "_note": "Order for Fighter Hayabusa. If playing as King Slender, Giant Panther replaces him as Match 5 champion."
+      },
+      {
+        "name": "VWA Title Defenses",
+        "matches": "6-15",
+        "description": "Exactly 10 consecutive title defense matches, two 5-match loops across the roster."
+      },
+      {
+        "name": "VWF Unification Match",
+        "matches": "16",
+        "description": "CHALLENGE DOUBLE TITLE match against The Great Puma (VWF Champion).",
+        "opponent": "great_puma",
+        "victoryText": "A WINNER IS YOU"
+      }
+    ]
+  },
+
+  "ring": {
+    "matWidth": 180,
+    "matHeight": 120,
+    "matOffsetX": 38,
+    "matOffsetY": 50,
+    "ropeInset": 8,
+    "apronWidth": 24,
+    "outsideAreaWidth": 40,
+    "turnbuckleSize": 6,
+    "_note": "NES-scale dimensions (256x240 screen). Ring mat centered. Ropes inset from mat edge."
+  },
+
+  "sprites": {
+    "hardwareSpriteMode": "8x8",
+    "wrestlerMetasprite": {
+      "tilesWide": 3,
+      "tilesHigh": 4,
+      "pixelWidth": 24,
+      "pixelHeight": 32,
+      "hardwareSpritesPerWrestler": 12
+    },
+    "_note": "NES PPU 8x8 sprite mode. Each wrestler is a 3x4 tile metasprite (24x32 px, 12 hardware sprites)."
+  },
+
+  "viewport": {
+    "virtualWidth": 480,
+    "virtualHeight": 360,
+    "aspectRatio": "4:3",
+    "scaleFactor": 1.875,
+    "_note": "Virtual resolution is 480x360 (1.875x NES 256x240). NES-scale values multiplied by scaleFactor for world coords."
+  }
+}

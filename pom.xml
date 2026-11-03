@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.prowrestling</groupId>
+    <artifactId>pro-wrestling</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+    <name>Pro Wrestling :: Kotlin / libGDX</name>
+
+    <description>
+        Modern 2D wrestling game engine and homage to classic 8-bit wrestling games, written in Kotlin 2.4 and libGDX 1.13.5.
+    </description>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java-version>21</java-version>
+
+        <!-- kotlin related -->
+        <kotlin.version>2.4.21</kotlin.version>
+
+        <!--
+          libGDX. The desktop natives (gdx-platform natives-desktop) cover Windows/Linux/macOS on
+          x86-64 and Linux/macOS ARM64.
+        -->
+        <gdx-version>1.13.5</gdx-version>
+
+        <!-- test related -->
+        <junit-version>4.13.2</junit-version>
+
+        <!-- maven related -->
+        <maven-compiler-plugin-version>3.14.0</maven-compiler-plugin-version>
+        <maven-surefire-plugin-version>2.22.2</maven-surefire-plugin-version>
+        <maven-shade-plugin-version>3.6.0</maven-shade-plugin-version>
+        <exec-maven-plugin-version>3.4.1</exec-maven-plugin-version>
+
+        <main-class>prowrestling.DesktopLauncher</main-class>
+
+        <!-- Tests never open a window; keep AWT/LWJGL from trying. -->
+        <test.jvm.args>-Djava.awt.headless=true -Xmx1g</test.jvm.args>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.badlogicgames.gdx</groupId>
+                <artifactId>gdx</artifactId>
+                <version>${gdx-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.badlogicgames.gdx</groupId>
+                <artifactId>gdx-backend-lwjgl3</artifactId>
+                <version>${gdx-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.badlogicgames.gdx</groupId>
+                <artifactId>gdx-platform</artifactId>
+                <version>${gdx-version}</version>
+                <classifier>natives-desktop</classifier>
+            </dependency>
+            <dependency>
+                <groupId>com.badlogicgames.gdx</groupId>
+                <artifactId>gdx-lwjgl3-angle</artifactId>
+                <version>${gdx-version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+        <!-- Kotlin standard library -->
+        <dependency>
+            <groupId>org.jetbrains.kotlin</groupId>
+            <artifactId>kotlin-stdlib</artifactId>
+            <version>${kotlin.version}</version>
+        </dependency>
+
+        <!-- libGDX core + desktop backend + natives -->
+        <dependency>
+            <groupId>com.badlogicgames.gdx</groupId>
+            <artifactId>gdx</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.badlogicgames.gdx</groupId>
+            <artifactId>gdx-backend-lwjgl3</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.badlogicgames.gdx</groupId>
+            <artifactId>gdx-platform</artifactId>
+            <classifier>natives-desktop</classifier>
+        </dependency>
+        <dependency>
+            <groupId>com.badlogicgames.gdx</groupId>
+            <artifactId>gdx-lwjgl3-angle</artifactId>
+        </dependency>
+
+        <!-- Test -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit-version}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <sourceDirectory>${project.basedir}/src/main/kotlin</sourceDirectory>
+        <plugins>
+            <plugin>
+                <groupId>org.jetbrains.kotlin</groupId>
+                <artifactId>kotlin-maven-plugin</artifactId>
+                <version>${kotlin.version}</version>
+                <executions>
+                    <execution>
+                        <id>compile</id>
+                        <goals>
+                            <goal>compile</goal>
+                        </goals>
+                        <configuration>
+                            <sourceDirs>
+                                <sourceDir>${project.basedir}/src/main/kotlin</sourceDir>
+                            </sourceDirs>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>test-compile</id>
+                        <goals>
+                            <goal>test-compile</goal>
+                        </goals>
+                        <configuration>
+                            <sourceDirs>
+                                <sourceDir>${project.basedir}/src/test/kotlin</sourceDir>
+                            </sourceDirs>
+                        </configuration>
+                    </execution>
+                </executions>
+                <configuration>
+                    <jvmTarget>${java-version}</jvmTarget>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven-compiler-plugin-version}</version>
+                <configuration>
+                    <release>${java-version}</release>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>default-compile</id>
+                        <phase>none</phase>
+                    </execution>
+                    <execution>
+                        <id>default-testCompile</id>
+                        <phase>none</phase>
+                    </execution>
+                    <execution>
+                        <id>java-compile</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>compile</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>java-test-compile</id>
+                        <phase>test-compile</phase>
+                        <goals>
+                            <goal>testCompile</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${maven-surefire-plugin-version}</version>
+                <configuration>
+                    <argLine>${test.jvm.args}</argLine>
+                    <forkCount>1</forkCount>
+                    <reuseForks>true</reuseForks>
+                    <includes>
+                        <include>**/*Test.java</include>
+                    </includes>
+                </configuration>
+            </plugin>
+
+            <!-- mvn exec:java runs the game from the project root (assets/ is resolved relatively) -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>${exec-maven-plugin-version}</version>
+                <configuration>
+                    <mainClass>${main-class}</mainClass>
+                    <classpathScope>runtime</classpathScope>
+                </configuration>
+            </plugin>
+
+            <!--
+              Shade produces the runnable assembly (target/pro-wrestling.jar) as an attached classifier so
+              the thin jar stays the main artifact. Signature files are dropped because the merged
+              jar no longer matches them; ServicesResourceTransformer merges META-INF/services.
+            -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>${maven-shade-plugin-version}</version>
+                <executions>
+                    <execution>
+                        <id>shade-jar-with-dependencies</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <shadedArtifactAttached>true</shadedArtifactAttached>
+                    <shadedClassifierName>jar-with-dependencies</shadedClassifierName>
+                    <finalName>pro-wrestling</finalName>
+                    <createDependencyReducedPom>false</createDependencyReducedPom>
+                    <transformers>
+                        <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                            <mainClass>${main-class}</mainClass>
+                        </transformer>
+                        <transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"/>
+                    </transformers>
+                    <filters>
+                        <filter>
+                            <artifact>*:*</artifact>
+                            <excludes>
+                                <exclude>META-INF/*.SF</exclude>
+                                <exclude>META-INF/*.DSA</exclude>
+                                <exclude>META-INF/*.RSA</exclude>
+                                <exclude>module-info.class</exclude>
+                                <exclude>META-INF/versions/*/module-info.class</exclude>
+                            </excludes>
+                        </filter>
+                    </filters>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

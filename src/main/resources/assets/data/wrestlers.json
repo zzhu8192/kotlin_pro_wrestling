@@ -1,0 +1,325 @@
+[
+  {
+    "id": "hayabusa",
+    "name": "Fighter Hayabusa",
+    "country": "Japan",
+    "displayOrder": 1,
+    "hp": 240,
+    "walkSpeedX": 1.0625,
+    "walkSpeedY": 0.8125,
+    "walkSpeedDiagX": 0.8125,
+    "walkSpeedDiagY": 0.65625,
+    "runSpeed": 2.5,
+    "weight": 3,
+    "statProfile": [1, 1, 2, 0],
+    "defenseProfile": [0, 1, 2, 0],
+    "description": "A well-rounded Japanese wrestler with balanced stats. Strong striking defense.",
+    "signatureMove": {
+      "id": "enzuigiri",
+      "name": "Back Brain Kick",
+      "input": "grapple_down_A",
+      "altInput": "stand_A_behind",
+      "damage": 28,
+      "stunFrames": 90,
+      "knocksDown": true,
+      "animationId": "enzuigiri"
+    },
+    "palette": {
+      "primary": [236, 106, 100],
+      "secondary": [76, 154, 236],
+      "skin": [236, 180, 176],
+      "outline": [0, 0, 0]
+    },
+    "ai": {
+      "aggression": 0.6,
+      "reversalRate": 0.5,
+      "divePropensity": 0.3,
+      "signatureThreshold": 0.4,
+      "blockRate": 0.3,
+      "irishWhipRate": 0.4,
+      "reactionDelayFrames": 8
+    }
+  },
+  {
+    "id": "starman",
+    "name": "Star Man",
+    "country": "Mexico",
+    "displayOrder": 2,
+    "hp": 240,
+    "walkSpeedX": 1.0625,
+    "walkSpeedY": 0.8125,
+    "walkSpeedDiagX": 0.8125,
+    "walkSpeedDiagY": 0.65625,
+    "runSpeed": 2.5,
+    "weight": 2,
+    "statProfile": [2, 0, 0, 0],
+    "defenseProfile": [2, 1, 1, 0],
+    "description": "High strike priority luchador from Mexico. Lower grapple defense but fast strikes.",
+    "signatureMove": {
+      "id": "somersault_kick",
+      "name": "Somersault Kick",
+      "input": "grapple_down_A",
+      "altInput": "running_A",
+      "damage": 26,
+      "stunFrames": 85,
+      "knocksDown": true,
+      "animationId": "somersault_kick"
+    },
+    "secondarySignature": {
+      "id": "flying_cross_chop",
+      "name": "Flying Cross Chop",
+      "input": "running_B",
+      "damage": 22,
+      "stunFrames": 50,
+      "knocksDown": true
+    },
+    "palette": {
+      "primary": [236, 238, 236],
+      "secondary": [228, 84, 236],
+      "skin": [236, 180, 176],
+      "outline": [0, 0, 0]
+    },
+    "ai": {
+      "aggression": 0.7,
+      "reversalRate": 0.45,
+      "divePropensity": 0.6,
+      "signatureThreshold": 0.35,
+      "blockRate": 0.2,
+      "irishWhipRate": 0.5,
+      "reactionDelayFrames": 6
+    }
+  },
+  {
+    "id": "kincornkarn",
+    "name": "Kin Corn Karn",
+    "country": "Korea",
+    "displayOrder": 3,
+    "hp": 240,
+    "walkSpeedX": 1.0625,
+    "walkSpeedY": 0.8125,
+    "walkSpeedDiagX": 0.8125,
+    "walkSpeedDiagY": 0.65625,
+    "runSpeed": 2.5,
+    "weight": 3,
+    "statProfile": [0, 2, 2, 0],
+    "defenseProfile": [0, 2, 1, 0],
+    "description": "Stocky Korean martial artist with high grapple and power stats.",
+    "signatureMove": {
+      "id": "mongolian_chop",
+      "name": "Mongolian Chop",
+      "input": "grapple_down_A",
+      "altInput": null,
+      "damage": 24,
+      "stunFrames": 80,
+      "knocksDown": true,
+      "animationId": "mongolian_chop"
+    },
+    "secondarySignature": {
+      "id": "karate_kick",
+      "name": "Karate Kick",
+      "input": "stand_A",
+      "damage": 14,
+      "stunFrames": 30,
+      "knocksDown": false
+    },
+    "palette": {
+      "primary": [160, 170, 0],
+      "secondary": [236, 238, 236],
+      "skin": [236, 180, 176],
+      "outline": [0, 0, 0]
+    },
+    "ai": {
+      "aggression": 0.65,
+      "reversalRate": 0.55,
+      "divePropensity": 0.15,
+      "signatureThreshold": 0.45,
+      "blockRate": 0.35,
+      "irishWhipRate": 0.35,
+      "reactionDelayFrames": 10
+    }
+  },
+  {
+    "id": "giant_panther",
+    "name": "Giant Panther",
+    "country": "USA",
+    "displayOrder": 4,
+    "hp": 240,
+    "walkSpeedX": 1.0625,
+    "walkSpeedY": 0.8125,
+    "walkSpeedDiagX": 0.8125,
+    "walkSpeedDiagY": 0.65625,
+    "runSpeed": 2.5,
+    "weight": 4,
+    "statProfile": [1, 1, 1, 0],
+    "defenseProfile": [1, 2, 1, 0],
+    "description": "Powerhouse American brawler. High grapple defense.",
+    "signatureMove": {
+      "id": "iron_claw",
+      "name": "Iron Claw",
+      "input": "grapple_down_A",
+      "altInput": null,
+      "damage": 30,
+      "stunFrames": 100,
+      "knocksDown": true,
+      "animationId": "iron_claw"
+    },
+    "secondarySignature": {
+      "id": "headbutt",
+      "name": "Headbutt",
+      "input": "grapple_B_close",
+      "damage": 10,
+      "stunFrames": 20,
+      "knocksDown": false
+    },
+    "palette": {
+      "primary": [236, 238, 236],
+      "secondary": [76, 154, 236],
+      "skin": [236, 180, 176],
+      "outline": [0, 0, 0]
+    },
+    "ai": {
+      "aggression": 0.55,
+      "reversalRate": 0.6,
+      "divePropensity": 0.1,
+      "signatureThreshold": 0.5,
+      "blockRate": 0.4,
+      "irishWhipRate": 0.3,
+      "reactionDelayFrames": 12
+    }
+  },
+  {
+    "id": "amazon",
+    "name": "The Amazon",
+    "country": "Unknown",
+    "displayOrder": 5,
+    "hp": 240,
+    "walkSpeedX": 1.0625,
+    "walkSpeedY": 0.8125,
+    "walkSpeedDiagX": 0.8125,
+    "walkSpeedDiagY": 0.65625,
+    "runSpeed": 2.5,
+    "weight": 3,
+    "statProfile": [1, 1, 2, 0],
+    "defenseProfile": [0, 1, 2, 0],
+    "description": "Mysterious wild man who fights dirty. Illegal tactics brawler.",
+    "signatureMove": {
+      "id": "piranha_bite",
+      "name": "Piranha Bite",
+      "input": "grapple_down_A",
+      "altInput": null,
+      "damage": 26,
+      "stunFrames": 95,
+      "knocksDown": true,
+      "animationId": "piranha_bite"
+    },
+    "secondarySignature": {
+      "id": "outlaw_choke",
+      "name": "Outlaw Choke",
+      "input": "near_downed_B",
+      "damage": 8,
+      "stunFrames": 30,
+      "knocksDown": false
+    },
+    "palette": {
+      "primary": [116, 196, 0],
+      "secondary": [236, 238, 236],
+      "skin": [56, 204, 108],
+      "outline": [0, 0, 0]
+    },
+    "ai": {
+      "aggression": 0.8,
+      "reversalRate": 0.5,
+      "divePropensity": 0.2,
+      "signatureThreshold": 0.3,
+      "blockRate": 0.2,
+      "irishWhipRate": 0.45,
+      "reactionDelayFrames": 7
+    }
+  },
+  {
+    "id": "king_slender",
+    "name": "King Slender",
+    "country": "USA",
+    "displayOrder": 6,
+    "hp": 240,
+    "walkSpeedX": 1.0625,
+    "walkSpeedY": 0.8125,
+    "walkSpeedDiagX": 0.8125,
+    "walkSpeedDiagY": 0.65625,
+    "runSpeed": 2.5,
+    "weight": 3,
+    "statProfile": [2, 0, 2, 0],
+    "defenseProfile": [1, 0, 2, 0],
+    "description": "Technical American powerhouse. High strike and power stats.",
+    "signatureMove": {
+      "id": "backbreaker",
+      "name": "Backbreaker",
+      "input": "grapple_down_A",
+      "altInput": null,
+      "damage": 34,
+      "stunFrames": 95,
+      "knocksDown": true,
+      "animationId": "backbreaker"
+    },
+    "palette": {
+      "primary": [236, 238, 236],
+      "secondary": [236, 106, 100],
+      "skin": [236, 180, 176],
+      "outline": [0, 0, 0]
+    },
+    "ai": {
+      "aggression": 0.6,
+      "reversalRate": 0.6,
+      "divePropensity": 0.15,
+      "signatureThreshold": 0.45,
+      "blockRate": 0.35,
+      "irishWhipRate": 0.35,
+      "reactionDelayFrames": 9
+    }
+  },
+  {
+    "id": "great_puma",
+    "name": "The Great Puma",
+    "country": "Unknown",
+    "displayOrder": 7,
+    "hp": 240,
+    "walkSpeedX": 1.0625,
+    "walkSpeedY": 0.8125,
+    "walkSpeedDiagX": 0.8125,
+    "walkSpeedDiagY": 0.65625,
+    "runSpeed": 2.5,
+    "weight": 4,
+    "selectable": false,
+    "isBoss": true,
+    "damageMultiplier": 1.375,
+    "statProfile": [1, 2, 2, 0],
+    "defenseProfile": [2, 1, 2, 0],
+    "description": "The undefeated VWF champion. Master of all techniques with 1.25x-1.5x damage multiplier on heavy grapples.",
+    "signatureMove": {
+      "id": "all_signatures",
+      "name": "Random Signature",
+      "input": "grapple_down_A",
+      "altInput": null,
+      "damage": 34,
+      "stunFrames": 95,
+      "knocksDown": true,
+      "animationId": "varies",
+      "note": "Great Puma randomly selects from all other wrestlers' signature moves"
+    },
+    "palette": {
+      "primary": [236, 174, 236],
+      "secondary": [236, 238, 236],
+      "skin": [236, 180, 176],
+      "outline": [0, 0, 0]
+    },
+    "ai": {
+      "aggression": 0.75,
+      "reversalRate": 0.8,
+      "divePropensity": 0.4,
+      "signatureThreshold": 0.25,
+      "blockRate": 0.625,
+      "irishWhipRate": 0.5,
+      "reactionDelayFrames": 4
+    }
+  }
+]

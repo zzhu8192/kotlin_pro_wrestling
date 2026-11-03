@@ -1,0 +1,158 @@
+{
+  "_comment": "Damage values from ROM disassembly (table at $AD20, routine at $AC38). All values are base HP damage against 240 HP max. Damage scales ~20% per 4-match difficulty tier. Great Puma gets 1.25-1.5x multiplier on heavy grapples.",
+
+  "strikes": {
+    "punch": {
+      "damage": 5,
+      "stunFormula": "(255 - HP) / 2",
+      "knocksDown": false,
+      "range": 16,
+      "startupFrames": 2,
+      "recoveryFrames": 6,
+      "description": "Quick standing jab (B button). 4-5 HP damage."
+    },
+    "kick": {
+      "damage": 10,
+      "stunFormula": "(255 - HP) / 2",
+      "knocksDown": false,
+      "range": 20,
+      "startupFrames": 3,
+      "recoveryFrames": 8,
+      "description": "Standing kick (A button). 9-11 HP damage, more range than punch."
+    },
+    "running_clothesline": {
+      "damage": 19,
+      "stunFormula": "2 * (255 - HP)",
+      "knocksDown": true,
+      "range": 24,
+      "startupFrames": 1,
+      "recoveryFrames": 12,
+      "description": "Running B attack. Clothesline, 16-22 HP. Great Puma: 27 HP."
+    },
+    "running_dropkick": {
+      "damage": 31,
+      "stunFormula": "2 * (255 - HP)",
+      "knocksDown": true,
+      "range": 28,
+      "startupFrames": 1,
+      "recoveryFrames": 15,
+      "description": "Running A attack. Flying dropkick, 23-39 HP. Very powerful."
+    }
+  },
+
+  "grapple_moves": {
+    "body_slam": {
+      "damage": 9,
+      "stunFormula": "2 * (255 - HP)",
+      "knocksDown": true,
+      "input": "grapple_B",
+      "animationFrames": 24,
+      "description": "Win grapple + B. Pick up and slam. 7-10 HP (Great Puma: 12)."
+    },
+    "irish_whip": {
+      "damage": 0,
+      "stunFormula": "n/a",
+      "knocksDown": false,
+      "input": "grapple_LR_B",
+      "animationFrames": 12,
+      "throwSpeed": 4.0,
+      "description": "Win grapple + Left/Right + B. Fling opponent into the ropes. No damage."
+    },
+    "brainbuster": {
+      "damage": 26,
+      "stunFormula": "2 * (255 - HP)",
+      "knocksDown": true,
+      "input": "grapple_A",
+      "altInput": "grapple_up_A",
+      "animationFrames": 30,
+      "description": "Win grapple + A. Vertical suplex. 22-30 HP (Great Puma: 37)."
+    },
+    "back_suplex": {
+      "damage": 18,
+      "stunFormula": "2 * (255 - HP)",
+      "knocksDown": true,
+      "input": "grapple_LR_A",
+      "animationFrames": 28,
+      "description": "Win grapple + Left/Right + A. Belly-to-back suplex. 15-20 HP (Great Puma: 25)."
+    },
+    "piledriver": {
+      "damage": 30,
+      "stunFormula": "2 * (255 - HP)",
+      "knocksDown": true,
+      "input": "grapple_down_A",
+      "animationFrames": 32,
+      "description": "Default Down+A in grapple. 22-37 HP (30 base). Replaced by character signatures."
+    }
+  },
+
+  "ground_moves": {
+    "ground_stomp": {
+      "damage": 29,
+      "stunFormula": "2 * (255 - HP)",
+      "knocksDown": false,
+      "input": "near_downed_B",
+      "description": "Stand near downed opponent + B. Ground stomp / knee drop. 21-36 HP."
+    },
+    "pin_attempt": {
+      "damage": 0,
+      "stunFormula": "n/a",
+      "knocksDown": false,
+      "input": "near_downed_A",
+      "description": "Stand near downed opponent + A. Initiate pin attempt (3-count)."
+    }
+  },
+
+  "aerial_moves": {
+    "diving_splash": {
+      "damage": 48,
+      "stunFormula": "2 * (255 - HP)",
+      "knocksDown": true,
+      "input": "on_turnbuckle_AB",
+      "animationFrames": 20,
+      "description": "From turnbuckle + A or B. Flying body splash. 36-60 HP. Devastating!"
+    },
+    "dive_crash": {
+      "damage": 20,
+      "stunFormula": "2 * (255 - HP)",
+      "knocksDown": true,
+      "selfDamage": true,
+      "selfStunFrames": 120,
+      "description": "Miss the diving splash. Attacker takes ~20 HP and is downed for 2 seconds."
+    }
+  },
+
+  "signature_moves": {
+    "_comment": "Replace default piledriver for Down+A in grapple. Damage range: 20-34 HP base. See wrestlers.json for assignment.",
+    "enzuigiri":       { "damage": 28, "knocksDown": true, "animationFrames": 18 },
+    "somersault_kick": { "damage": 26, "knocksDown": true, "animationFrames": 20 },
+    "mongolian_chop":  { "damage": 24, "knocksDown": true, "animationFrames": 16 },
+    "iron_claw":       { "damage": 30, "knocksDown": true, "animationFrames": 24 },
+    "piranha_bite":    { "damage": 26, "knocksDown": true, "animationFrames": 22 },
+    "backbreaker":     { "damage": 34, "knocksDown": true, "animationFrames": 26 }
+  },
+
+  "healthSystem": {
+    "maxHp": 240,
+    "maxHpCapped": 239,
+    "healByteIncrementPerFrame": 6,
+    "healByteOverflowThreshold": 256,
+    "hpRestoredPerOverflow": 1,
+    "healCycleFrames": 43,
+    "healCycleSeconds": 0.71,
+    "pinfallHpThreshold": 62,
+    "_note": "Health regens slowly: heal byte accumulates 6/frame, overflows at 256 (every ~43 frames / 0.71s), restoring 1 HP. Cannot pin for 3-count if opponent HP >= 62."
+  },
+
+  "stunFormulas": {
+    "_comment": "Stun duration is dynamic, based on current HP. Lower HP = longer stun.",
+    "lightStun": "(255 - currentHp) / 2",
+    "heavyKnockdown": "2 * (255 - currentHp)",
+    "maxAutoGetUpFrames": 191,
+    "examples": {
+      "at240hp": { "lightStun": 7, "heavyKnockdown": 30 },
+      "at180hp": { "lightStun": 37, "heavyKnockdown": 150 },
+      "at120hp": { "lightStun": 67, "heavyKnockdown": 270, "capped": 191 },
+      "at60hp":  { "lightStun": 97, "heavyKnockdown": 390, "capped": 191 }
+    }
+  }
+}
