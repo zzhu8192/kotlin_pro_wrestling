@@ -1,0 +1,18 @@
+# Build outputs
+target/
+*.class
+
+# IDE and editors
+.idea/
+*.iml
+.vscode/
+.eclipse/
+*.ipr
+*.iws
+
+# OS and Editor artifacts
+.DS_Store
+Thumbs.db
+*~
+*.swp
+*.log
